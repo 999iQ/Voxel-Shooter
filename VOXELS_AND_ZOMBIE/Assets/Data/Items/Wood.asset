@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wood
   UIIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  maxCount: 0
+  Object: {fileID: 0}
+  maxCount: 9999

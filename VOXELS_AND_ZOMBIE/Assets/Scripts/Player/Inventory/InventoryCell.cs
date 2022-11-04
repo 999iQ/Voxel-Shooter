@@ -10,22 +10,31 @@ public class InventoryCell : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 {
     public event Action Ejecting;
 
-    [SerializeField] private TMPro.TMP_Text _nameField;
+    [SerializeField] public TMPro.TMP_Text _nameField;
+    [SerializeField] private TMPro.TMP_Text _countField;
     [SerializeField] private Image _iconField;
 
     private Transform _draggingParent;
     private Transform _originalParent;
 
-    public void Init(Transform draggingParent)
+    private int Count = 1; //количество предметов в ячейке
+
+    public void Init(Transform draggingParent, int count)
     {
         _draggingParent = draggingParent;
         _originalParent = transform.parent;
+        Count = count;
     }
 
     public void Render(AssetItem item)
     {
         _nameField.text = item.Name;
         _iconField.sprite = item.UIIcon;
+
+        if (Count > 1) //пишем количество предметов в СТАКЕ, только если его больше чем 1
+            _countField.text = Count.ToString();
+        else
+            _countField.text = "";
     }
 
     private bool In(RectTransform originalParent)
@@ -37,7 +46,6 @@ public class InventoryCell : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     private void Eject()
     {
         Ejecting?.Invoke();
-        //Debug.Log("Выбросили");
     }
 
 
@@ -64,7 +72,7 @@ public class InventoryCell : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
     private void InsertInGrid()
     {
-        //отпустили предмет
+        //выбросили предмет за границы инвентаря
         int clossestIndex = 0;
 
         for (int i = 0; i < _originalParent.transform.childCount; ++i)
@@ -74,6 +82,7 @@ public class InventoryCell : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
                Vector3.Distance(transform.position, _originalParent.GetChild(clossestIndex).position))
             {
                 clossestIndex = i;
+
             }
         }
 

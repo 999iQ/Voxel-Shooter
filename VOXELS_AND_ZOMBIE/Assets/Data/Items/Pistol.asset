@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Pistol
   UIIcon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  maxCount: 0
+  Object: {fileID: 7864866320248263470, guid: dc87decfd4fd0134382962e952562a93, type: 3}
+  maxCount: 1

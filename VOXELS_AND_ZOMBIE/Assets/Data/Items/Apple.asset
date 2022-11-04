@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Apple
   UIIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   Object: {fileID: 4714111253370278300, guid: 625ac014d82090b4791d48b0ed1639f9, type: 3}
+  maxCount: 64
